@@ -1,0 +1,219 @@
+{% extends 'ExpresDemoBundle:Page:index.html.twig'%}
+
+{% block title %}
+Expres - Blog
+{% endblock %}
+
+{% block body %}
+
+    <section id="home" class="head-main-img">
+        <div class="container">
+           <div class="row text-center pad-row" >
+            <div class="col-md-12">
+              <h1>  Blog  </h1>
+              <h5>  For keeping in touch with our users</h5>
+                </div>
+               </div>
+            </div>   
+    </section>
+
+<div class="container">
+  <div class="row show-grid">
+  <div class="col-md-9">
+  <!-- HERE COMES THE MAIN CONTENT -->
+  <p> </p>
+
+  {% block main %}
+
+    {% for entity in entities %}
+  <div class="panel panel-default">
+  <div class="panel-body">
+    <p>
+
+        <h2> <a href="{{path('blog_article',{'id': entity.id})}}"> {{ entity.title|upper }} </a> </h2>
+        <h5> Created on: {% if entity.date %}{{ entity.date|date('Y. m. d.') }}{% endif %} | 
+        Category: {{ entity.blogcategories }}</h5>
+        <hr>
+        
+        <p> {{ entity.content|raw }} </p>
+
+        <!-- <h6> Tags: <span class="label label-success"> {{ entity.tags }}</span> </h6> -->
+        <!-- <a href="#" class="btn btn-default"> Read more... </a> -->
+
+        <!-- {{ entity.category }}
+
+        {{ entity.tags }} -->
+      </p>
+        </div>
+        <div class="panel-footer">
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-8">
+            <!-- TAGS DISPLAY WITH LINKS -->
+              <p class="text-left"> Tags: 
+                 
+                 
+                  <!-- {{ entity.tags }} -->
+
+                  {% set tags = entity.tags|split(',') %}
+                  {% for tags in tags %}
+                  
+                    <span class="badge">
+                      {{ tags }}
+                    </span>      
+                  
+                  {% endfor %}
+                 </p>
+
+            </div>
+            <div class="col-xs-6 col-md-4">
+              <p class="text-right"><a href="{{ path('blog_article',{'id': entity.id}) }}" 
+              class="btn btn-default btn-block">
+                <i class="fa fa-chevron-right"></i>
+                Read more... 
+
+                </a> </p>
+              
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    {% endfor %}
+
+      <nav>
+        <ul class="pager">
+        
+        <!-- CALCULATING THE OLDER PAGES -->        
+        {% if older != 0 %}
+          <li class="previous">
+            <a href="
+              {% if category == null %}
+                {{ path('blog_paginator', {'page': older }) }}
+              {% endif %}
+              
+              {% if category != null %}
+                {{ path('blog_paginator_category', {'category':category, 'page':older} ) }}
+              {% endif %}
+              ">  
+
+              <span aria-hidden="true">&larr;</span> 
+              Older
+            </a></li>
+        {% endif %}
+
+          <!-- IF OLDER == 0 THEN WILL BE NO LINK -->
+          {% if older == 0 %}
+            <li class="previous disabled">
+              <a><span aria-hidden="true">&larr;</span> 
+                Older
+              </a></li>
+          {% endif %}
+        <!-- END - CALCULATING THE OLDER PAGES -->        
+
+
+        <!-- CALCULATING THE NEWER PAGES -->
+
+        {% if newer != 0 %}
+          <li class="next">
+            <a href="
+              {% if category == null %}
+                {{ path('blog_paginator', {'page' : newer }) }}
+              {% endif %}
+              
+              {% if category != null %}
+                {{ path('blog_paginator_category', {'category' : category, 'page' : newer} ) }}
+              {% endif %}
+
+            ">
+              Newer <span aria-hidden="true">&rarr;</span></a></li>
+        {% endif %}
+
+
+        {% if newer == 0 %}
+          <li class="next disabled">
+            <a>
+              Newer <span aria-hidden="true">&rarr;</span></a></li>
+        {% endif %}
+        <!-- END - CALCULATING THE NEWER PAGES -->
+
+        <!-- page : {{ page }} <br>
+        category : {{ category }} -->
+
+        </ul>
+      </nav>
+    {% endblock %}
+  </div>
+
+
+  <div class="col-md-3">
+  <!-- THIS IS THE SIDEBAR ON THE RIGHT -->
+  <h3> Search </h3>
+
+<div>
+    <form name="input" action="{{ path('blog_search') }}" method="post" class="form-inline">
+        <div class="form-group">
+          <input type="text" name="search" 
+            class="form-control" id="search" 
+            placeholder="Search!" required="required"
+            maxlength="20" minLength="3"
+             />
+          <input type="submit" name="submit" value="Submit" class="btn btn-default">
+        </div>
+    </form>
+</div>
+
+
+
+  <hr>
+  <!-- END OF ONE WIDGET -->
+
+
+  
+<!-- END OF ONE WIDGET -->
+  
+  {{ render(controller('ExpresDemoBundle:Blog:sidebar')) }}
+  
+  <hr>
+  <hr>
+  <!-- END OF ONE WIDGET -->
+
+  <h3> History </h3>
+    <ul class="list-unstyled">
+      <a href="#"><li>January 2015</li></a>
+      <a href="#"><li>February 2015</li></a>
+      <a href="#"><li>March 2015</li></a>
+      <a href="#"><li>April 2015</li></a>
+      <a href="#"><li>May 2015</li></a>
+    </ul>
+  <hr>
+<!-- END OF ONE WIDGET -->
+  
+
+  </div>
+  </div>
+</div>
+
+
+
+
+<!-- MELLEKVESE
+
+A mellékvese páros belső elválasztású mirigye, melyen megkülönböztetünk kéreg- és velőállományt.
+A mellékvesekéreg fő funkciója szteroid hormonok termelése.
+
+A mellékvesevelő a szimpatikus idegrendszer része; katekolaminokat (adrenalint és noradrenalint) termel, és juttat a vérkeringésbe, melyek hozzájárulnak a készenléti reakció eseményeihez.
+
+
+DIABETES INSIPIDUS
+
+A diabetes insipidus egy öröklött vagy szerzett anyagcserebetegség, melyre olthatatlan szomjúságérzés (polydipsia) és nagy mennyiségű, gyakori – az átlagnál alacsonyabb fajsúlyú – vizeletürítés (poliuria) jellemző. Két kiváltóoka lehet: a vazopresszin (antidiuretikus hormon; ADH) hiánya (centrális diabetes insipidus) vagy a vízvisszaszívásért felelős membráncsatornák hibás működése (renális diabetes insipidus).
+
+PAJZSMIRIGY:
+
+elhejezkedes
+
+A pajzsmirigy a légcső, illetve a gége előtt kétoldalt elhelyezkedő, lebenyekből álló, belső elválasztású mirigy.
+ -->
+{% endblock %}

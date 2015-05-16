@@ -1,0 +1,27 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+
+
+
+{% block main -%}
+ {{ tinymce_init() }}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Static Pages Edit</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('staticpages') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

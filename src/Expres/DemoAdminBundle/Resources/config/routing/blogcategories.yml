@@ -1,0 +1,34 @@
+blogcategories:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:index" }
+
+blogcategories_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:show" }
+
+blogcategories_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:new" }
+
+blogcategories_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:create" }
+    methods:  POST
+
+blogcategories_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:edit" }
+
+blogcategories_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:update" }
+    methods:  [POST, PUT]
+
+blogcategories_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:delete" }
+    methods:  [POST, DELETE]
+
+blogcategories_sdelete:
+    path:     /sdelete/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogCategories:simpleDelete" }

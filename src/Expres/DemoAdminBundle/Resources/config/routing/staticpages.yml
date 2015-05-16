@@ -1,0 +1,40 @@
+staticpages:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:index" }
+
+
+staticpages_paginator:
+    path:     /page/{page}
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:index" }
+    methods:  [GET]
+
+staticpages_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:show" }
+
+staticpages_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:new" }
+
+staticpages_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:create" }
+    methods:  POST
+
+staticpages_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:edit" }
+
+staticpages_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:update" }
+    methods:  [POST, PUT]
+
+staticpages_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:delete" }
+    methods:  [POST, DELETE]
+
+staticpages_sdelete:
+    path:     /sdelete/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:StaticPages:simpleDelete" }

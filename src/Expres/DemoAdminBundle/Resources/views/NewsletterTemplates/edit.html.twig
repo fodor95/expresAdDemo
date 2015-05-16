@@ -1,0 +1,32 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+
+
+
+
+{% block main -%}
+
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">NewsletterTemplates</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+    <h1>NewsletterTemplates edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('administrator_newslettertemplates') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
+
+
+

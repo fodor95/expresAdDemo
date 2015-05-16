@@ -1,0 +1,21 @@
+Expres\DemoAdminBundle\Entity\pfpProject:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        created:
+            type: datetime
+        title:
+            type: string
+            length: '25'
+        shortDescribtion:
+            type: string
+            length: '50'
+        describtion:
+            type: text
+    lifecycleCallbacks: {  }

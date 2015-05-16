@@ -1,0 +1,28 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block navbar %}
+<a href="{{ path('staticpages') }}" class="btn btn-default" >Back to the list</a>
+<a href="{{ path('staticpages_edit', { 'id': entity.id }) }}" class="btn btn-default">Edit</a>
+{% endblock %}
+
+
+{% block main -%}
+
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Static pages manager</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+    <h1>{{ entity.title }}</h1>
+
+
+
+{{ entity.content|raw }}</td>
+
+
+
+
+{% endblock %}

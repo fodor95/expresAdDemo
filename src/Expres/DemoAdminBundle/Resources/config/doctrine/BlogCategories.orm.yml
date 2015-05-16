@@ -1,0 +1,18 @@
+Expres\DemoAdminBundle\Entity\BlogCategories:
+    type: entity
+    table: null
+    oneToMany:
+       posts:
+          targetEntity: BlogPosts
+          mappedBy: blogcategories
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '150'
+    lifecycleCallbacks: {  }

@@ -1,0 +1,28 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block navbar %}
+<a href="{{ path('administrator_newslettertemplates_new') }}" type="button" class="btn btn-success"  class="pull-right">
+<i class="fa fa-file-o"></i> CLEAR LOG
+</a>
+{% endblock %}
+
+
+{% block main -%}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Search Log</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+    <h1>SearchLog creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('searchlog') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

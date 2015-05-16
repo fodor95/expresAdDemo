@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>pfpTask</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Shortdescribtion</th>
+                <td>{{ entity.shortDescribtion }}</td>
+            </tr>
+            <tr>
+                <th>Header</th>
+                <td>{{ entity.header }}</td>
+            </tr>
+            <tr>
+                <th>Progress</th>
+                <td>{{ entity.progress }}</td>
+            </tr>
+            <tr>
+                <th>Projectid</th>
+                <td>{{ entity.projectID }}</td>
+            </tr>
+            <tr>
+                <th>Stateid</th>
+                <td>{{ entity.stateID }}</td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td>{{ entity.place }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('pfptask') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('pfptask_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

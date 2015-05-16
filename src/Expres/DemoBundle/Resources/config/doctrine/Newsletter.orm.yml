@@ -1,0 +1,14 @@
+Expres\DemoBundle\Entity\Newsletter:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            length: '150'
+    lifecycleCallbacks: {  }

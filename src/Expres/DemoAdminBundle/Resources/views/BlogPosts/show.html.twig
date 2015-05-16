@@ -1,0 +1,79 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DATA TABLES  -->
+    <script src="{{ asset('admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"> </script>
+    
+    <script src="{{ asset('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"> </script>
+    
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#table').DataTable();
+        } );
+    </script>
+    
+{% endblock %}
+
+
+{% block navbar %}
+<a href="{{ path('blogposts_new') }}" type="button" class="btn btn-success"  class="pull-right">
+<i class="fa fa-file-o"></i> New Blog Entry
+</a> 
+{% endblock %}
+
+{% block main -%}
+
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Blog Entry Preview</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ entity.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ entity.content|raw }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ entity.category }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ entity.tags }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('blogposts') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('blogposts_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

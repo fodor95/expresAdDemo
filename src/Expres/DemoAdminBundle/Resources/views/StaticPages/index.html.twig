@@ -1,0 +1,105 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+
+{% block stylesheets%} 
+    {{ parent() }}
+    <!-- Data tables -->
+    <!-- <link href="{{ asset('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') }}" type="text/css" rel="stylesheet" /> -->
+
+    <!-- <link href="{{ asset('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css') }}" type="text/css" rel="stylesheet" /> -->
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DATA TABLES  -->
+    <script src="{{ asset('admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') }}"> </script>
+    
+    <script src="{{ asset('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') }}"> </script>
+    
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('#table').DataTable();
+        } );
+    </script>
+    
+{% endblock %}
+
+
+{% block navbar %}
+<a href="{{ path('staticpages_new') }}" type="button" class="btn btn-success"  class="pull-right">
+<i class="fa fa-file-o"></i> New Page
+</a> 
+{% endblock %}
+
+
+{% block main -%}
+
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Static pages</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+    
+
+
+    <table class="table table-striped table-bordered table-hover display" id="table">
+        <thead>
+            <tr>
+                <th width="5%">#</th>
+                <th width="30%">Title</th>
+                <th width="55%">Content</th>
+                <th width="10px" class=".col-xs">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('staticpages_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td> 
+                    <a href="{{ path('staticpages_show', { 'id': entity.id }) }}" data-toggle="tooltip" data-placement="top" title="Edit this entry">  {{ entity.title }}</a>
+                </td>
+                <td>{{ entity.content|slice(0,55) }}</td>
+                <td>
+
+                <!-- EDIT -->
+                    <a href="{{ path('staticpages_edit', { 'id': entity.id }) }}" 
+                        type="button" 
+                        class="btn btn-primary btn-circle"
+                        data-toggle="tooltip" data-placement="top" title="Edit">
+                    <i class="fa fa-pencil"></i>
+                    </a>
+                    <!-- SEE -->
+                    <a href="{{ path('staticpages_show', { 'id': entity.id }) }}" 
+                        type="button" 
+                        class="btn btn-info btn-circle"
+                        data-toggle="tooltip" data-placement="top" title="Read">
+                    <i class="fa fa-eye"></i>
+                    </a>
+                    
+                    <!-- DELETE -->
+<!--                     <a href="{{ path('staticpages_sdelete', { 'id': entity.id }) }}" 
+                        type="button" 
+                        class="btn btn-danger btn-circle"
+                        data-toggle="tooltip" data-placement="top" title="Delete">
+                    <i class="fa fa-times-circle-o"></i>
+                    </a> -->
+
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+    {% endblock %}
+
+
+

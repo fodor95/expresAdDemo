@@ -1,0 +1,18 @@
+Expres\DemoAdminBundle\Entity\NewsletterTemplates:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '150'
+        content:
+            type: text
+        created:
+            type: date
+    lifecycleCallbacks: {  }

@@ -1,0 +1,27 @@
+Expres\DemoAdminBundle\Entity\BlogPosts:
+    type: entity
+    manyToOne:
+        blogcategories:
+          targetEntity: BlogCategories
+          inversedBy: posts
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        content:
+            type: text
+        date:
+            type: date
+        category:
+            type: integer
+            nullable: TRUE
+        tags:
+            type: text
+    lifecycleCallbacks: {  }

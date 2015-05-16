@@ -1,0 +1,23 @@
+blog_home:
+    path:     /
+    defaults: { _controller: ExpresDemoBundle:Blog:index }
+
+blog_article:
+    path: /article/{id}
+    defaults: { _controller: ExpresDemoBundle:Blog:single }
+
+blog_paginator:
+    path: /page/{page}
+    defaults: { _controller: ExpresDemoBundle:Blog:index}
+
+blog_category_article:
+    path: /category/{category}
+    defaults: { _controller: ExpresDemoBundle:Blog:index }
+
+blog_paginator_category:
+    path: /categories/{category}/onpage/{page}
+    defaults: { _controller: ExpresDemoBundle:Blog:index}
+
+blog_search:
+    path: /search
+    defaults: { _controller: ExpresDemoBundle:Search:index }

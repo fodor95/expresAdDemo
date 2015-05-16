@@ -1,0 +1,9 @@
+Expres\DemoAdminBundle\Entity\BlogPosts:
+    properties:
+        title:
+            - NotBlank: ~
+        content:
+            - NotBlank: ~
+        category:
+            - Blank: ~
+

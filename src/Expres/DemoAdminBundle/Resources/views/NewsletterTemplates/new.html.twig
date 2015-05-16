@@ -1,0 +1,26 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block main -%}
+    <h1>NewsletterTemplates creation</h1>
+
+    {{ form_start(form) }}
+    	{{ form_errors(form) }}
+
+    		{{ form_row(form.title) }}
+    		fasz
+    		{{ form_label(form.title) }}
+
+
+
+    {{ form_end(form) }}
+
+
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('administrator_newslettertemplates') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

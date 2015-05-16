@@ -1,0 +1,234 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+
+{% block stylesheets -%}
+	{{ parent() }}
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('gridloadingeffects/default.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('gridloadingeffects/component.css') }}" />
+	<script src="{{ asset('gridloadingeffects/modernizr.custom.js') }}"></script>
+{% endblock %}
+{% block javascripts -%}
+	{{ parent() }}
+	<script src="{{ asset('gridloadingeffects/masonry.pkgd.min.js') }}"></script>
+	<script src="{{ asset('gridloadingeffects/imagesloaded.js') }}"></script>
+	<script src="{{ asset('gridloadingeffects/classie.js') }}"></script>
+	<script src="{{ asset('gridloadingeffects/AnimOnScroll.js') }}"></script>
+	<script>
+		new AnimOnScroll( document.getElementById( 'grid' ), {
+			minDuration : 0.4,
+			maxDuration : 0.7,
+			viewportFactor : 0.2
+		} );
+	</script>
+
+{% endblock %}
+
+{% block navbar -%}
+<i class="fa fa-envelope"></i>
+{% endblock %}
+
+
+{% macro alma() %}
+<div class="panel panel-default">
+  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-body">
+    Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+  </div>
+</div>
+{% endmacro %}
+
+{% block main -%}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard home</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<p>Hello you homless on your home page xoxo</p>
+
+
+
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Overview</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Statistics</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in  active" id="home">
+    	Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="messages">
+    	Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    	Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    	Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="settings">
+    	Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    	Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul class="grid effect-4" id="grid">
+	<li>
+
+
+	</li>
+
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+<li><a href="http://drbl.in/fHaa"></a>{{ _self.alma() }}</li>
+
+</ul>
+
+
+
+
+{% endblock %}

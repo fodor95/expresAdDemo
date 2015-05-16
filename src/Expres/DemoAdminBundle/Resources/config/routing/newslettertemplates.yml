@@ -1,0 +1,34 @@
+administrator_newslettertemplates:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:index" }
+
+administrator_newslettertemplates_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:show" }
+
+administrator_newslettertemplates_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:new" }
+
+administrator_newslettertemplates_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:create" }
+    methods:  POST
+
+administrator_newslettertemplates_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:edit" }
+
+administrator_newslettertemplates_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:update" }
+    methods:  [POST, PUT]
+
+administrator_newslettertemplates_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:delete" }
+    methods:  [POST, DELETE]
+
+administrator_newslettertemplates_sdelete:
+    path:     /sdelete/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:NewsletterTemplates:simpleDelete" }

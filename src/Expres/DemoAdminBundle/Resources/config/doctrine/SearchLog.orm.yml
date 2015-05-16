@@ -1,0 +1,21 @@
+Expres\DemoAdminBundle\Entity\SearchLog:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        keyword:
+            type: string
+            length: '50'
+        ip:
+            type: string
+            length: '200'
+        browser:
+            type: text
+        date:
+            type: datetime
+    lifecycleCallbacks: {  }

@@ -1,0 +1,58 @@
+pfptask:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:index" }
+
+pfptask_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:show" }
+
+pfptask_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:new" }
+
+pfptask_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:create" }
+    methods:  POST
+
+pfptask_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:edit" }
+
+pfptask_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:update" }
+    methods:  [POST, PUT]
+
+pfptask_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:delete" }
+    methods:  [POST, DELETE]
+
+pfptask_progress_edit:
+    path: /progress/{id}/{value}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:progress"}
+
+pfptask_stage_edit:
+    path: /stage/{id}/{value}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:stage" }
+
+pfptask_taskbox:
+    path: /taskbox/show/{entity}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:taskbox"}
+
+pfptask_delete_task_modal:
+    path: /deletetaskmodal/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:deleteTaskModal"}
+
+pfptask_modosit:
+    path: /modosit/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:modosit" }
+
+pfptask_logfront:
+    path: /log
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:log"}
+
+pfptask_log_by_date:
+    path: /log/date/{year}/{month}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:log"}

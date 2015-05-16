@@ -1,0 +1,23 @@
+{% extends 'ExpresDemoBundle:Page:index.html.twig'%}
+
+{% block title %}
+Expres - Contact 
+{% endblock %}
+
+
+{% block body %}
+    <section id="home" class="head-main-img">
+        <div class="container">
+           <div class="row text-center pad-row" >
+            <div class="col-md-12">
+              <h1>  Contact  </h1>
+              <h5>  Why not? </h5>
+                </div>
+               </div>
+            </div>   
+       </section>
+
+<div class="container">
+--{{ entity.content|raw }}
+</div>
+{% endblock %}

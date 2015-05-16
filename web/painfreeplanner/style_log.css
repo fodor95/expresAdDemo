@@ -1,0 +1,188 @@
+@import url(http://fonts.googleapis.com/css?family=Signika:600);
+
+body{
+	/*background-color: #264348;*/
+}
+
+
+
+.container {
+	width: 100%;
+}
+
+
+
+.row {
+	margin-left:0;
+	margin-right:0;
+}
+
+.calendarBox{
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	font-family: 'Signika', sans-serif;
+	
+	
+}
+
+.calendarBoxInner{
+	height: 150px;
+	margin: 2px;
+	background-color: #F2F1EF;
+	/*color: #7f8c8d; */
+	padding: 2px;
+	border: 0 solid #87D37C;
+  	border-left-width: 5px;
+
+}
+
+
+.calendarBoxInner:hover{
+/*	height: 200px;
+	width: 100%;
+	z-index: 10;
+	position: absolute;
+  	top: 0;
+  left: 0;*/
+}
+
+.yearRow{
+	/*background-color: #2ecc71;*/
+background-color: #2ecc71;
+border: 1px solid #58a138;
+background-image: -o-linear-gradient(bottom, #8ad36a 0%, #27ae60 100%);
+background-image: -moz-linear-gradient(bottom, #8ad36a 0%, #27ae60 100%);
+background-image: -webkit-linear-gradient(bottom, #8ad36a 0%, #27ae60 100%);
+background-image: -ms-linear-gradient(bottom, #8ad36a 0%, #27ae60 100%);
+background-image: linear-gradient(to bottom, #8ad36a 0%, #27ae60 100%);
+-webkit-box-shadow: inset 0 1px 0 #a3ec83;
+-moz-box-shadow: inset 0 1px 0 #a3ec83;
+box-shadow: inset 0 1px 0 #a3ec83;
+}
+
+.yearRow h4{
+	font-family: 'Signika', sans-serif;
+	font-size: 40pt;
+	color: white;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.yearRowButtons{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+
+.yearButton{
+
+}
+
+
+.monthRow{
+	background-color: #27ae60;
+
+}
+
+.monthRowButtons{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.monthRow h4{
+	font-family: 'Signika', sans-serif;
+	font-size: 40pt;
+	color: #ecf0f1;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.noframe{
+	
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+
+}
+
+.noTopBottomTaskChronologicalView{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 2px;
+	margin-bottom: 5px;
+	background-color: #ECF0F1;
+	border-radius: 0px;
+	/*color: white;*/
+}
+
+.borderLeftChronologicalView{
+	border: 0 solid #27ae60;
+ 	border-right-width: 3px;
+  	border-left-width: 3px;
+  	border-bottom-width: 10px;
+}
+
+.greenBorderRight{
+	border: 0 solid #27ae60;
+ 	border-right-width: 3px;
+  	border-left-width: 3px;
+  	border-bottom-width: 10px;
+}
+
+.dayRow h4{
+	font-family: 'Signika', sans-serif;
+	text-align: center;
+}
+
+.dayRow{
+	background-color: #87D37C;
+	color: #1E824C;
+}
+
+.dateBg{
+	font-size: 50pt;
+	text-align: center;
+	position: absolute; 
+	right: 10px;
+	color: #BFBFBF;
+}
+
+.dateFront{
+
+padding-top: 30px;
+padding-left: 10px;
+position: absolute; left: 10px;
+font-size: 12pt;
+
+}
+
+.infoBoxInner{
+	background-color: #F2F1EF;
+	font-family: 'Signika', sans-serif;
+	border: 0 solid #27ae60;
+ 	border-top-width: 3px;
+ 	text-align: center;
+ 	padding-left: 3px;
+ 	padding-right: 3px;
+}
+
+.infoBoxInner h4{
+	
+	color: #26A65B;
+	margin-bottom: 0px;
+	margin-top: 2px;
+}
+
+.chronologicalHeader{
+	font-family: 'Signika', sans-serif;
+	background-color: #27ae60;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: #F2F1EF;
+}
+
+
+.sevenRows .col-md-2 {
+	width: 14.285714285714285714285714285714%;
+}

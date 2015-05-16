@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link href="{{ asset('css/base.css') }}" type="text/css" rel="stylesheet" />
+            {% stylesheets filter='cssrewrite' 
+                '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.css'
+                
+                '%kernel.root_dir%/../vendor/bootflat/bootflat/css/bootflat.css'
+
+                '%kernel.root_dir%/../vendor/bootflat/bootflat/css/bootflat.min.css'
+            %}
+            <link rel="stylesheet"  href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <!-- LOGO -->
+        <!-- <img src="{{ asset('img/vago.jpg') }}" width="100px" height="120px"> -->
+        <!-- END LOGO -->
+
+        <div class="container">
+          <div class="header">
+            <nav>
+              <ul class="nav nav-pills pull-right">
+                <li role="presentation" 
+                    {% if app.request.attributes.get('_route') == '/' %}
+                    class="active"
+                    {% endif %}
+                ><a href="{{ path('expres_demo_homepage') }}">Home</a></li>
+                
+                <li role="presentation"
+                    {% if app.request.attributes.get('_route') == 'features' %}
+                    class="active"
+                    {% endif %}
+                ><a href="{{ path('features') }}">Features</a></li>
+                <li role="presentation"
+                    {% if app.request.attributes.get('_route') == 'subscribe' %}
+                    class="active"
+                    {% endif %}
+                ><a href="{{ path('subscribe') }}">Subscribe to newsletter</a></li>
+                <li role="presentation"
+                    {% if app.request.attributes.get('_route') == 'about' %}
+                    class="active"
+                    {% endif %}
+                ><a href="{{ path('about') }}">About</a></li>
+                <li role="presentation"
+                    {% if app.request.attributes.get('_route') == 'contact' %}
+                    class="active"
+                    {% endif %}
+                ><a href="{{ path('contact') }}">Contact</a></li>
+              </ul>
+            </nav>
+            <h3 class="text-muted">Expres</h3>
+        </div>
+
+        <hr>
+        {% block body %}{% endblock %}
+        <hr>
+
+        <p> </p>
+        {% block footer %}
+        <hr>
+            <p> Footer (C) - All rights reserved </p>
+        {% endblock %}
+
+        {% block javascripts %}
+            {% javascripts
+                '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
+                '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.js'
+                '%kernel.root_dir%/../vendor/bootflat/bootflat/js/icheck.min.js'
+                '%kernel.root_dir%/../vendor/bootflat/bootflat/js/jquery.fs.selecter.min.js'
+                '%kernel.root_dir%/../vendor/bootflat/bootflat/js/jquery.fs.stepper.min.js'
+            %}
+            <script src="{{ asset_url }}"> </script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

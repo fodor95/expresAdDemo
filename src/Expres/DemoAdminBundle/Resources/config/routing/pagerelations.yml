@@ -1,0 +1,3 @@
+static_page_relationships:
+    path: /
+    defaults: { _controller:ExpresDemoAdminBundle:Pagerelations:index}

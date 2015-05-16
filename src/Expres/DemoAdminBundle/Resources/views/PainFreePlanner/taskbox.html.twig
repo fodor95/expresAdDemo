@@ -1,0 +1,99 @@
+<div class="taskContainer {{ class }}" id="draggable">
+				<h4>{{ entity.name|capitalize }} <p class="pull-right" style="color:#bdc3c7" > <i class="fa fa-align-justify"></i> </p> </h4>
+				<div class="col-md-12">
+			</div> 
+				<div class="row">
+					<div class="col-md-6">
+						<div class="date">{{ entity.created|date("d/m/Y") }}</div>  
+					</div>
+					<div class="col-md-6">
+						<div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle btn-xs pull-right" data-toggle="dropdown" aria-expanded="false">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+						<h5><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Action:</h5>
+						<li><a href="{{ path('pfptask_modosit', {'id' : entity.id}) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a></li>
+						<li><a data-toggle="modal" data-target="#deleteModal{{entity.id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</a></li>
+						<!-- <li class="divider"></li> -->
+						<h5><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Stage:</h5>
+						<li><a href="{{ path('pfptask_stage_edit', {'id': entity.id, 'value': '0'}) }}"><i class="fa fa-list-alt"></i> Newby</a></li>
+						<li><a href="{{ path('pfptask_stage_edit', {'id': entity.id, 'value': '1'}) }}"><i class="fa fa-lock"></i> Ice box</a></li>
+						<li><a href="{{ path('pfptask_stage_edit', {'id': entity.id, 'value': '2'}) }}"><i class="fa fa-exclamation-triangle"></i> Emergency</a></li>
+						<li><a href="{{ path('pfptask_stage_edit', {'id': entity.id, 'value': '3'}) }}"><i class="fa fa-fire"></i> In progress</a></li>
+						<li><a href="{{ path('pfptask_stage_edit', {'id': entity.id, 'value': '4'}) }}"><i class="fa fa-retweet"></i> Testing</a></li>
+						<li><a href="{{ path('pfptask_stage_edit', {'id': entity.id, 'value': '5'}) }}"><i class="fa fa-paperclip"></i> Finished</a></li>
+<!--  						<li> 
+							<i class="fa fa-lock"></i>
+							<i class="fa fa-exclamation-triangle"></i>
+							<i class="fa fa-fire"></i>
+							<i class="fa fa-retweet"></i>
+							<i class="fa fa-paperclip"></i>
+						 </li>  -->
+						<!-- <li class="divider"></li> -->
+						<h5><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Progress:</h5>
+						<li><a href="{{ path('pfptask_progress_edit', {'id': entity.id, 'value': '+10'}) }}"><i class="fa fa-plus-circle"></i> Increase by 10</a></li>
+						<li><a href="{{ path('pfptask_progress_edit', {'id': entity.id, 'value': '-10'}) }}"><i class="fa fa-minus-circle"></i> Decrease by 10</a></li>
+						<!-- <li class="divider"></li> -->
+					</ul>
+					</div>
+					</div>
+				</div>
+			<div class="taskContent">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- <img src="http://images10.okr.ro/serve/auctions.v7/2015/apr/15/7675004ad19efe7f2ccb32bd00f3e02d-6920990-1000_1000.jpg" class="img-responsive" alt="Responsive image"> -->
+						<p>{{ entity.shortDescribtion }}</p>
+						</div>
+				</div>
+				<div class="row">
+				</div>
+				</div>
+				<div class="progress">
+				  <div class="progress-bar  progress-bar-striped active" 
+				  	role="progressbar" aria-valuenow="{{ entity.progress }}" 
+				  	aria-valuemin="0" aria-valuemax="100" 
+				  	style="width: {{ entity.progress }}%">
+				  		<!-- <a href="#"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></a> -->
+				  		{{ entity.progress }}% 
+				  		<!-- <a href="#"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a> -->
+				  </div>
+				</div>
+			</div> &nbsp;
+
+<!-- DELETE BOX -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal{{entity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Task delete confirmation dialog</h4>
+      </div>
+      <div class="modal-body">
+      <div class="alert alert-warning" role="alert">
+      	<h3> Are you sure you want to delete the following task? <small>This cannot be undone!</small></h3>
+      	
+      </div>
+      	<br>
+        <h4> Name: </h4>  {{entity.name}}
+        <br>
+        Created on: {{entity.created|date("d/m/Y")}}
+        <br>
+        Short describtion: 
+        <br>
+        {{entity.shortDescribtion}}
+
+        <br>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="{{ path('pfptask_delete_task_modal', {'id': entity.id } ) }}" class="btn btn-danger"> DELETE</a>
+      </div>
+    </div>
+  </div>
+</div>

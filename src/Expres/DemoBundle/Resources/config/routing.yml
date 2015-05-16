@@ -1,0 +1,36 @@
+expres_demo_newsletter:
+    resource: "@ExpresDemoBundle/Resources/config/routing/newsletter.yml"
+    prefix:   /newsletter
+
+expres_demo_homepage:
+    path:     /
+    defaults: { _controller: ExpresDemoBundle:Default:index }
+
+about:
+    path: /about
+    defaults: { _controller: ExpresDemoBundle:Default:about }
+
+features:
+    path: /features
+    defaults: { _controller: ExpresDemoBundle:Default:features }
+
+contact:
+    path: /contact
+    defaults: { _controller: ExpresDemoBundle:Default:contact }
+
+subscribe: 
+    path: /subscribe
+    defaults: { _controller: ExpresDemoBundle:Default:subscribe }
+
+subscribe_finish:
+    path: /finish
+    defaults: { _controller: ExpresDemoBundle:Default:finishSubscription}
+
+blog:
+    resource: "@ExpresDemoBundle/Resources/config/routing/blog.yml"
+    prefix:   /blog
+
+getCountCategoryPosts:
+    path: /getCountCategoryPostsAction/{$blogcategories}
+    defaults: { _controller: ExpresDemoBundle:Default:getCountCategoryPosts}
+

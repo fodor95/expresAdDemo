@@ -1,0 +1,22 @@
+body {
+	background-color: red;
+}
+
+.sidebar h3{
+	color: red;
+}
+
+/* ON SEARCH PAGE */
+.highlight { 
+	background-color: rgb(34, 167, 240); 
+	font-weight: 900;
+	color: rgb(228, 241, 254);
+}
+
+.highlight:before {
+  content: "";
+}
+
+.highlight:after{
+	content: "";	
+}

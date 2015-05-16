@@ -1,0 +1,35 @@
+Expres\DemoAdminBundle\Entity\pfpTask:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        created:
+            type: datetime
+        name:
+            type: string
+            length: 255
+        shortDescribtion:
+            type: string
+            length: 255
+        header:
+            type: string
+            length: '45'
+            nullable: true;
+        progress:
+            type: integer
+            nullable: true;
+        projectID:
+            type: integer
+            nullable: true;
+        stateID:
+            type: integer
+            nullable: true;
+        place:
+            type: integer
+            nullable: true;
+    lifecycleCallbacks: {  }

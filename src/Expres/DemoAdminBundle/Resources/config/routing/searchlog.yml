@@ -1,0 +1,30 @@
+searchlog:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:index" }
+
+searchlog_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:show" }
+
+searchlog_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:new" }
+
+searchlog_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:create" }
+    methods:  POST
+
+searchlog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:edit" }
+
+searchlog_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:update" }
+    methods:  [POST, PUT]
+
+searchlog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:SearchLog:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,74 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block main -%}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Newsletter template editing</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('administrator_newslettertemplates') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('administrator_newslettertemplates_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+
+<!-- SEND -->
+<a href="#" 
+    type="button" 
+    class="btn btn-success btn-circle btn-lg"
+    data-toggle="tooltip" data-placement="top" title="Send">
+<i class="fa fa-envelope-o"></i>
+</a>
+ 
+<!-- EDIT -->
+<a href="{{ path('administrator_newslettertemplates_edit', { 'id': entity.id }) }}" 
+    type="button" 
+    class="btn btn-primary btn-circle btn-lg"
+    data-toggle="tooltip" data-placement="top" title="Edit">
+<i class="fa fa-pencil"></i>
+</a>
+
+<!-- DELETE -->
+<a href="{{ path('administrator_newslettertemplates_sdelete', { 'id': entity.id }) }}" 
+    type="button" 
+    class="btn btn-danger btn-circle btn-lg"
+    data-toggle="tooltip" data-placement="top" title="Delete">
+<i class="fa fa-times-circle-o"></i>
+</a>
+
+<!-- BACK -->
+<a href=" # "
+    type="button" 
+    class="btn btn-default btn-circle btn-lg"
+    data-toggle="tooltip" data-placement="top" title="Go back to templates">
+<i class="fa  fa-home"></i>
+</a>
+
+
+
+<h3> Subject: {{ entity.title }} </h3>
+<h6> Date: {{ entity.created|date('Y-m-d H:i:s') }} </h6>
+
+<h3> Content: </h3>
+
+
+<p> {{ entity.content }} </p>
+
+
+
+
+
+{% endblock %}

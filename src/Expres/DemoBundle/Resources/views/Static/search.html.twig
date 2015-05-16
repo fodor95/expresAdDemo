@@ -1,0 +1,124 @@
+{% extends 'ExpresDemoBundle:Static:blog.html.twig'%}
+
+
+{% block main -%}
+ <!-- <p> Gyere keresni: </p> -->
+
+<div class="panel panel-default">
+  <div class="panel-heading">Search</div>
+  <div class="panel-body">
+    
+		{% for flashMessage in app.session.flashbag.get('error') %}
+		<div class="alert alert-danger alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			Error: {{ flashMessage }}
+		</div>
+		 
+		{% endfor %}
+		<!-- {{ dump(entities) }} -->
+
+
+		<!-- IF THE KEYWORD IS OK, AND IS FOUND IN THE DATABASE -->
+		{% if entities|length > 0 %}
+			<!-- The submitted keyword or keywords was/were : <b> {{ keyword }} </b> -->
+			{% if entities|length == 1 %}
+				<div class="page-header">
+	  				<h1> There is only one result </h1>
+				</div>
+			{% endif %}
+			{% if entities|length > 1 %}
+				<div class="page-header">
+	  				<h1> Search results: <small>There are {{entities|length}} results</small></h1>
+				</div>
+			{% endif %}
+
+
+				{% for  entity in entities %}
+
+
+
+
+					<div class="entities">
+						<a href="{{path('blog_article',{'id': entity.id})}}"><h3 class="tohighlight">{{entity.title}}</h3>
+						</a>
+						<h5> Created on: {{ entity.date|date('Y. m. d.') }} | 
+							Category: {{ entity.blogcategories }}</h5>
+						<hr>
+						{% set content = entity.content|striptags %}
+						<p class="tohighlight"> 
+							{{ content|slice(0,250) }}... 
+						</p>
+						
+						<a href="{{path('blog_article',{'id': entity.id})}}" class="btn btn-default"> 
+							<i class="fa fa-chevron-right"></i>
+							Read more 
+						</a> 
+						
+						<hr>
+					
+					</div>
+				{% endfor %}
+
+		{% endif %}
+
+		<!-- IF NOTHING IS FOUND IN THE DATABASE -->
+		{% if entities|length == 0 %}
+		<div class="alert alert-warning" role="alert">
+			<p>There were no result according to your search quer: <b> {{ keyword }} </b></p>
+			<p>But we have got a lot of other posts! </p>
+		</div>
+			<div id="category-donut-chart"> </div>
+		{% endif %}
+
+
+<!-- PANEL ENDING -->
+  </div>
+</div>
+
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+	<link href="{{ asset('admin/bower_components/morrisjs/morris.css') }}" type="text/css" rel="stylesheet" />
+
+{% endblock %}
+
+
+{% block javascripts %}
+	{{ parent() }}
+	{% if entities|length == 0%}
+	<script src="{{ asset('admin/bower_components/raphael/raphael-min.js') }}"> </script>
+	<script src="{{ asset('admin/bower_components/morrisjs/morris.min.js') }}"> </script>
+	{% endif %}
+	<script src="{{ asset('js/jquery.highlight-5.js') }}"> </script>
+	
+	<script type="text/javascript">
+
+	$('.tohighlight').highlight('{{ keyword }}');
+	
+
+	{% if entities|length == 0 %}
+	Morris.Donut({
+	element: 'category-donut-chart',
+	data: [
+
+	{% for category in categories %}
+
+	{label: "{{ category.name }}", value: {{ render(controller('ExpresDemoBundle:Blog:getCountCategoryPosts', {'blogcategories': category.id })) }}},
+
+	{% endfor %}
+
+	],
+	colors: ['#446CB3','#4183D7','#59ABE3','#3498DB','#52B3D9','#22A7F0','#4B77BE']
+	});
+	{% endif %}
+
+
+	</script>
+
+
+	
+
+{% endblock %}
+

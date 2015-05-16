@@ -1,0 +1,34 @@
+pfptask:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:index" }
+
+pfptask_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:show" }
+
+pfptask_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:new" }
+
+pfptask_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:create" }
+    methods:  POST
+
+# pfptask_edit:
+#     path:     /{id}/edit
+#     defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:edit" }
+
+pfptask_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:update" }
+    methods:  [POST, PUT]
+
+pfptask_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:delete" }
+    methods:  [POST, DELETE]
+
+# pfptask_modosit:
+#     path: /modosit/{id}
+#     defaults: { _controller: "ExpresDemoAdminBundle:pfpTask:modosit" }

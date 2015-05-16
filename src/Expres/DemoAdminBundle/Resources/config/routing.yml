@@ -1,0 +1,66 @@
+expres_demo_admin_pfptask:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/pfptask.yml"
+    prefix:   /pfptask
+
+expres_demo_admin_searchlog:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/searchlog.yml"
+    prefix:   /searchlog
+
+expres_demo_admin_blogcategories:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/blogcategories.yml"
+    prefix:   /blogcategories
+
+expres_demo_admin_blogposts:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/blogposts.yml"
+    prefix:   /blogposts
+
+expres_demo_admin_staticpages:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/staticpages.yml"
+    prefix:   /staticpages
+
+expres_demo_admin_administrator_newslettertemplates:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/newslettertemplates.yml"
+    prefix:   /newslettertemplates
+
+expres_website_settings:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/websitesettings.yml"
+    prefix: /configuration
+
+static_page_relationships:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/pagerelations.yml"
+    prefix: /pagerelations
+
+expres_demo_admin_homepage:
+    path:     /index
+    defaults: { _controller: ExpresDemoAdminBundle:Default:index }
+
+login:
+    path: /login
+    defaults: { _controller:ExpresDemoAdminBundle:Security:login}
+
+login_check:
+    path: /login_check
+
+logout:
+    pattern: /logout
+
+newsletter_subscribers:
+    path: /subscribers
+    defaults: { _controller:ExpresDemoAdminBundle:Newsletter:subscribers }
+
+newsletter_delete_admin:
+    path: /subscribers/delete/{id}
+    defaults: { _controller:ExpresDemoAdminBundle:Newsletter:delete }
+    requirements: { _method: get }
+
+newsletter_sender:
+    path: /newslettersender/{template}
+    defaults: { _controller:ExpresDemoAdminBundle:Newsletter:newslettersender }
+
+newsletter_sender_action:
+    path: /newslettersender/send/action
+    defaults: { _controller:ExpresDemoAdminBundle:Newsletter:newslettersend}
+
+expres_demo_admin_administrator_painfreeplanner:
+    resource: "@ExpresDemoAdminBundle/Resources/config/routing/painfreeplanner.yml"
+    prefix:   /painfreeplanner

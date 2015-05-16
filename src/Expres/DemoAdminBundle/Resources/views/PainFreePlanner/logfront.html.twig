@@ -1,0 +1,321 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="{{ asset('painfreeplanner/style_log.css') }}" />
+{% endblock %}
+
+
+
+{% block navbar %}
+<a href="{{ path('pfptask') }}" class="btn btn-success">
+<i class="fa fa-bar-chart"></i> Default task view
+</a>
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#newTask">
+<i class="fa fa-file-o"></i> Create new task
+</button>
+
+{% endblock %}
+
+
+{% block main -%}
+
+<!-- {{ dump(daysOfMonth) }} -->
+
+<div class="container">
+
+	<div class="row yearRow"> 
+		<div class="col-md-2">
+			<h4> YEAR </h4>
+		</div>
+		<div class="col-md-10 yearRowButtons">
+			
+				<a href="" class="btn btn-default yearButton">2011</a>
+				<a href="" class="btn btn-default yearButton">2012</a>
+				<a href="" class="btn btn-default yearButton">2013</a>
+				<a href="" class="btn btn-default yearButton">2014</a>
+				<a href="" class="btn btn-default yearButton">2015</a>
+				<a href="" class="btn btn-default yearButton">2016</a>
+			
+		</div>
+	 
+	</div>
+
+	<div class="row monthRow"> 
+		<div class="col-md-2">
+			<h4> MONTH </h4>
+		</div>
+		<div class="col-md-10 monthRowButtons">
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'January' }) }}" class="btn btn-default yearButton">Jan</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'February' }) }}" class="btn btn-default yearButton">Feb</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'March' }) }}" class="btn btn-default yearButton">Mar</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'April' }) }}" class="btn btn-default yearButton">Apr</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'May' }) }}" class="btn btn-default yearButton">Ma</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'June' }) }}" class="btn btn-default yearButton">Jun</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'July' }) }}" class="btn btn-default yearButton">Jul</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'August' }) }}" class="btn btn-default yearButton">Aug</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'September' }) }}" class="btn btn-default yearButton">Sept</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'October' }) }}" class="btn btn-default yearButton">Oct</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'November' }) }}" class="btn btn-default yearButton">Nov</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'December' }) }}" class="btn btn-default yearButton">Dec</a>
+		</div>
+	 
+	</div>
+
+	<div class="container noframe"></div>
+	<div class="row noframe">
+	<div class="col-md-8 noframe greenBorderRight">
+		<div class="row dayRow">
+		<div class="sevenRows">
+		<!-- <div class="dayRow"> -->
+			<div class="col-md-2"> <h4> MONDAY 		</h4></div>
+			<div class="col-md-2"> <h4> THUESDAY 	</h4></div>
+			<div class="col-md-2"> <h4> WEDNESDAY 	</h4></div>
+			<div class="col-md-2"> <h4> THURSDAY 	</h4></div>
+			<div class="col-md-2"> <h4> FRIDAY	 	</h4></div>
+			<div class="col-md-2"> <h4> SATURDAY 	</h4></div>
+			<div class="col-md-2"> <h4> SUNDAY 		</h4></div>
+		<!-- </div> -->
+		</div>
+		</div>
+
+<!-- HERE STARTS A ROW -->
+<!-- 	<div class="sevenRows">
+		<div class="row">
+
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 1 </div> 
+				<div class="dateFront">
+					<span class="label label-success">2</span> tasks created <br>
+					<span class="label label-success">2</span> tasks finished <br>
+					<span class="label label-success">5</span> comments added <br>
+					<span class="label label-success">9</span> changes made
+
+				</div> 
+			</div>
+			</div>
+
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 2 </div> 
+				<div class="dateFront">
+					<span class="label label-success">8</span> tasks created <br>
+					<span class="label label-success">11</span> tasks finished <br>
+					<span class="label label-success">5</span> comments added <br>
+					<span class="label label-success">24</span> changes made
+
+				</div> 
+			</div>
+			</div>
+
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 2 </div> 
+				<div class="dateFront">
+					<span class="label label-success">8</span> tasks created <br>
+					<span class="label label-success">11</span> tasks finished <br>
+					<span class="label label-success">5</span> comments added <br>
+					<span class="label label-success">24</span> changes made
+
+				</div> 
+			</div>
+			</div>
+
+
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 3 </div> 
+				<div class="dateFront">
+					<span class="label label-success">1</span> tasks created <br>
+					<span class="label label-success">3</span> tasks finished <br>
+					<span class="label label-success">2</span> comments added <br>
+					<span class="label label-success">6</span> changes made
+
+				</div> 
+			</div>
+			</div>
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 4 </div> 
+				<div class="dateFront">
+					<span class="label label-success">5</span> tasks created <br>
+					<span class="label label-success">1</span> tasks finished <br>
+					<span class="label label-success">9</span> comments added <br>
+					<span class="label label-success">13</span> changes made
+
+				</div> 
+			</div>
+			</div>
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 5 </div> 
+				<div class="dateFront">
+					<span class="label label-success">14</span> tasks created <br>
+					<span class="label label-success">6</span> tasks finished <br>
+					<span class="label label-success">1</span> comments added <br>
+					<span class="label label-success">24</span> changes made
+
+				</div> 
+			</div>
+			</div>
+			<div class="col-md-2 calendarBox"> 
+			<div class="calendarBoxInner"> 
+			
+				<div class="dateBg"> 6 </div> 
+				<div class="dateFront">
+					<span class="label label-success">3</span> tasks created <br>
+					<span class="label label-success">15</span> tasks finished <br>
+					<span class="label label-success">20</span> comments added <br>
+					<span class="label label-success">35</span> changes made
+
+				</div> 
+			</div>
+			</div>									
+	</div>
+	</div> -->
+
+
+<div class="sevenRows">
+	<div class="row">
+
+{% for day in daysOfMonth %}
+<!-- -> {{ day }} : - -->
+<div class="col-md-2 calendarBox"> 
+<div class="calendarBoxInner"> 
+
+	<div class="dateBg"> {{day}} </div> 
+	<div class="dateFront">
+		<span class="label label-success">2</span>created <br>
+		<span class="label label-success">2</span>finished <br>
+		<span class="label label-success">5</span>comments <br>
+		<span class="label label-success">9</span>changes
+
+	</div> 
+</div>
+</div>
+
+
+{% endfor %}
+</div>
+</div>
+
+
+
+	</div>
+<!-- HERE ENDS A ROW -->
+
+
+
+
+	<div class="col-md-4 noframe">
+
+
+
+		<div class="container noframe borderLeftChronologicalView">
+			<div class="row">
+
+				<div class="col-md-2">
+				<div class="infoBoxInner">
+					<h4> 4 </h4> 
+					NEW 
+				</div>
+				</div>
+
+
+				<div class="col-md-2">
+				<div class="infoBoxInner">
+					<h4> 4 </h4> 
+					ICED
+				</div>
+				</div>
+
+				<div class="col-md-2">
+				<div class="infoBoxInner">
+					<h4> 4 </h4> 
+					PANIC
+				</div>
+				</div>
+
+				<div class="col-md-2">
+				<div class="infoBoxInner">
+					<h4> 4 </h4> 
+					WORKING 
+				</div>
+				</div>
+
+
+				<div class="col-md-2">
+				<div class="infoBoxInner">
+					<h4> 4 </h4> 
+					TESTING
+				</div>
+				</div>
+
+				<div class="col-md-2">
+				<div class="infoBoxInner">
+					<h4> 4 </h4> 
+					FINISHED 
+				</div>
+				</div>
+				
+			</div>
+
+
+			<div class="chronologicalHeader">
+			<div class="row">
+				<div class="col-md-1">TIME</div>
+				<div class="col-md-1">BY</div>
+				<div class="col-md-2">WHICH</div>
+				<div class="col-md-1">FROM</div>
+				<div class="col-md-1">TO</div>
+				<div class="col-md-6">COMMENT</div>
+			</div>
+			</div>
+
+
+<div class="noTopBottomTaskChronologicalView">
+			<div class="row">
+				<div class="col-md-1">16|11</div>
+				<div class="col-md-1">T1</div>
+				<div class="col-md-2">Tasking</div>
+				<div class="col-md-1"><i class="fa fa-list-alt"></i></div>
+				<div class="col-md-1"><i class="fa fa-exclamation-triangle"></i></div>
+				<div class="col-md-6">Sorry bro</div>
+			</div>
+</div>
+
+<div class="noTopBottomTaskChronologicalView">
+
+			<div class="row">
+				<div class="col-md-1">16|14</div>
+				<div class="col-md-1">T1</div>
+				<div class="col-md-2">Tasking</div>
+				<div class="col-md-1"><i class="fa fa-lock"></i></div>
+				<div class="col-md-1"><i class="fa fa-retweet"></i></div>
+				<div class="col-md-6">Multiple comments</div>
+			</div>
+
+</div>
+		</div>
+
+	</div>
+		
+
+	</div>
+	</div>
+
+</div>
+
+
+
+
+{% endblock %}

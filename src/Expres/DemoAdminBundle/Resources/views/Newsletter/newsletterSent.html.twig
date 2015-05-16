@@ -1,0 +1,21 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block main -%}
+
+<!-- Newsletters were sent, i think succesfully too. But please, i am just a beta, don`t hurt me. No more.  -->
+
+<h4>subject</h4>
+<p> {{ entity.subject }} </p>
+
+<h4>extra receivers</h4>
+<p> {{ entity.extrareceivers }} </p>
+
+<h4>message</h4>
+<p> {{ entity.message|raw }} </p>
+
+<h4>attachement </h4>
+<p><img src="{{ asset(entity.img) }}"> </p>
+
+{{ dump(users) }}
+
+{% endblock %}

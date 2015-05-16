@@ -1,0 +1,34 @@
+blogposts:
+    path:     /
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:index" }
+
+blogposts_show:
+    path:     /{id}/show
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:show" }
+
+blogposts_new:
+    path:     /new
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:new" }
+
+blogposts_create:
+    path:     /create
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:create" }
+    methods:  POST
+
+blogposts_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:edit" }
+
+blogposts_update:
+    path:     /{id}/update
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:update" }
+    methods:  [POST, PUT]
+
+blogposts_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:delete" }
+    methods:  [POST, DELETE]
+
+blogposts_sdelete:
+    path:     /sdelete/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:BlogPosts:simpleDelete" }

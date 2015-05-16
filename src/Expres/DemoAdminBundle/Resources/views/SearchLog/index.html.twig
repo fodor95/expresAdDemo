@@ -1,0 +1,64 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block navbar %}
+<a href="#" type="button" class="btn btn-info"  class="pull-right" data-toggle="modal" data-target="#help">
+<i class="fa fa-lightbulb-o"></i> Help
+</a>
+{% endblock %}
+
+
+{% block main -%}
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Search Log</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+</div>
+
+
+
+<div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Beta version informations</h4>
+      </div>
+      <div class="modal-body">
+        This version is in development process so many functionalities are not working. For example this search log, because the google analytics is still better than our system. In the future this function will be extended, when we see that there is a reason to do it, till than nothing will be changed here. 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Keyword</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.keyword }}</td>
+                <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}
