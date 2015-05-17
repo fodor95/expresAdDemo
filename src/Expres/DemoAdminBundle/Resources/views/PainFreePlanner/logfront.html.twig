@@ -188,19 +188,32 @@
 	<div class="row">
 
 {% for day in daysOfMonth %}
+
 <!-- -> {{ day }} : - -->
 <div class="col-md-2 calendarBox"> 
 <div class="calendarBoxInner"> 
 
+{% if day != 0 %}
 	<div class="dateBg"> {{day}} </div> 
 	<div class="dateFront">
+
 		<span class="label label-success">2</span>created <br>
 		<span class="label label-success">2</span>finished <br>
 		<span class="label label-success">5</span>comments <br>
 		<span class="label label-success">9</span>changes
-
 	</div> 
-</div>
+	</div>
+{% else %}
+<div class="dateBg">   </div> 
+	<div class="dateFront">
+
+		
+		<span class="label label-success"></span>
+	</div> 
+	</div>
+
+{% endif %}
+
 </div>
 
 

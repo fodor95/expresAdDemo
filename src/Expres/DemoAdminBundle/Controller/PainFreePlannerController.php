@@ -335,30 +335,26 @@ class PainFreePlannerController extends Controller
             return $this->redirectToRoute('pfptask_log_by_date', array('year'=>$year,'month'=>$month), 301);
         }
 
-        // echo $year;
-        // echo $month . '<br>';
 
 
-
+        //puts a 0 to every place of the array
         for($i = 0; $i < 42; $i ++)
             $monthDays[$i] = 0;
 
         $d = 1;
         // there must be an array, which holds when does the month start
-        for($i = $this->countWhenToStartMonth($year,$month); $i < $this->countWhenToStartMonth($year,$month)+31; $i++){
+        for($i = $this->countWhenToStartMonth($year,$month); $i < $this->countWhenToStartMonth($year,$month)+$this->getCurrentMonthLength($year, $month); $i++){
             $monthDays[$i] = $d++;
             
         }
 
-
-        // echo 'current month length: '.$this->getCurrentMonthLength($year,$month) . '|';
-
-        // echo '<->';
+        // echo $this->getCurrentMonthLength($year,$month);
 
 
-        // echo 'day name of first day of month ('.$month.')' .$this->getDayNameOfFirstDayOfMonth($year,$month). '|';
-        // echo '<->';
-        // echo $this->countWhenToStartMonth($year,$month). '|';
+        // echo 'month before ' . $this->getPreviousMonthWithYear($year, $month) . '</br>';
+        // echo 'month after ' . $this->getNextMonthWithYear($year,$month) . '</br>';
+        // echo 'month number' . $this->getMonthNumber($month) . '<br>';
+
 
         return $this->render('ExpresDemoAdminBundle:PainFreePlanner:logfront.html.twig', array(
                                                                                         'daysOfMonth'   => $monthDays,
@@ -374,7 +370,11 @@ class PainFreePlannerController extends Controller
         // debugging
         // echo 'getCurrentMonthLength: ' . date('d', strtotime('last day of this month'));
 
-        return date('d', strtotime('last day of this month'));
+        // return date('d', strtotime($year . ' ' . $month .' last day of month'));
+
+        // return cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
+        return $this->daysInMonth($month, $year);
     }
 
     private function getDayNameOfFirstDayOfMonth($year,$month){
@@ -420,5 +420,35 @@ class PainFreePlannerController extends Controller
         return date('F', strtotime('today'));
     }
 
+    private function getPreviousMonthWithYear($year,$month){
+        // returns the previous month with year, this format [0000]-[Month]
+        // return date('Y-F',strtotime($year . '-' . $month . '-30 first day of last month'));
+
+        return date('F',strtotime($year . '-' . $month . '-30 first day of last month'));
+    }
+
+    private function getPreviousMonthLength($year,$month){
+        
+    }
+
+    private function getNextMonthWithYear($year,$month){
+        // returns the next month with year, this format [0000]-[Month]
+        // return date('Y-F',strtotime($year . '-' . $month . '-30 first day of next month'));
+
+        return date('F',strtotime($year . '-' . $month . '-30 first day of next month'));
+    }
+
+    private function getMonthNumber($month){
+        $date = $month . ' 25 2010';
+
+        return date('m', strtotime($date));
+    }
+
+
+    private function daysInMonth($monthLetters, $year){ 
+    // calculate number of days in a month 
+        $month = $this -> getMonthNumber($monthLetters);
+    return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31); 
+    } 
 
 }
