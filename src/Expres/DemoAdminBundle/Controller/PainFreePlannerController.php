@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Expres\DemoAdminBundle\Entity\pfpTask;
 use Expres\DemoAdminBundle\Form\pfpTaskType;
 
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\DateTimeValidator;
 
 /**
  * StaticPages controller.
@@ -355,11 +357,16 @@ class PainFreePlannerController extends Controller
         // echo 'month after ' . $this->getNextMonthWithYear($year,$month) . '</br>';
         // echo 'month number' . $this->getMonthNumber($month) . '<br>';
 
+        // var_dump($this->taskCounter(1));
+
+
 
         return $this->render('ExpresDemoAdminBundle:PainFreePlanner:logfront.html.twig', array(
                                                                                         'daysOfMonth'   => $monthDays,
-                                                                                        'thisYear'      =>$year,
-                                                                                        'thisMonth'     =>$month
+                                                                                        'thisYear'      => $year,
+                                                                                        'thisMonth'     => $month,
+                                                                                        'months'        => $this->getMonthsInOrder(),
+                                                                                        'taskCounter'   => $this->countAllTasksbyState($year, $month)
                                                                                         ));
     }
 
@@ -450,5 +457,66 @@ class PainFreePlannerController extends Controller
         $month = $this -> getMonthNumber($monthLetters);
     return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31); 
     } 
+
+    private function getMonthsInOrder(){
+        $months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        return $months;
+    }
+
+    private function taskCounter($state,$year,$month){
+        // $em = $this->getDoctrine()->getManager();
+
+        
+        // $repository = $this->getDoctrine()->getRepository('ExpresDemoAdminBundle:pfpTask');
+        // $products = $repository->findByStateID($state);
+
+
+        // $from = DateTime::createFromFormat('2015-04-27 22:44:39', 'Y-m-d H:i:s');
+        // $from = DateTime::createFromFormat(, 'Y-m-d H:i:s');
+        // $from = new \DateTime('2015-04-27 22:44:39');
+
+
+
+
+        $datetime = new \DateTime("now");
+
+        $repository = $this->getDoctrine()
+                    ->getRepository('ExpresDemoAdminBundle:pfpTask');
+
+        //gets the number of month, from where to start with
+        $monthNumberToStartCounting = $this -> getMonthNumber($month);
+
+        //simply increments the month with one, to get the month till ends the first
+        $monthNumberToEndCounting = $monthNumberToStartCounting+1;
+
+        $query = $repository->createQueryBuilder('p')
+        // an interval from 1st of the month till the 1st day of the next month - so we do not have to know the length of the month
+            ->where('p.stateID = ' . $state . ' and p.created >= \' '. $year .'-'. $monthNumberToStartCounting .'-01 \''  . ' and p.created < \' '.$year.'-'.$monthNumberToEndCounting.'-01 \'' )
+            // ->setParameter('header', '19.99')
+            ->getQuery();
+
+        $products = $query->getResult();
+
+
+        // THE variable to store the tasks 
+        $number = 0;
+
+        foreach ($products as $product )
+            $number ++;
+
+        return $number;
+    }
+
+    private function countAllTasksbyState($year,$month){
+
+        $taskNumber = [];
+
+        for($i = 0; $i < 6; $i++)
+            $taskNumber[$i] = $this->taskCounter($i,$year,$month);
+        
+
+        return $taskNumber;
+    }
+
 
 }
