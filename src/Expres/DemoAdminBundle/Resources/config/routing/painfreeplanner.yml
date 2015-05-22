@@ -46,8 +46,17 @@ pfptask_delete_task_modal:
     defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:deleteTaskModal"}
 
 pfptask_modosit:
-    path: /modosit/{id}
+    path: /edittask/{id}
     defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:modosit" }
+
+pfptask_editupdate:
+    path: /pfptask_editupdate/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:editupdate" }
+    methods: [POST]
+
+pfptask_new_comment:
+    path: /newcomment/{idparent}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:newcomment"}
 
 pfptask_logfront:
     path: /log

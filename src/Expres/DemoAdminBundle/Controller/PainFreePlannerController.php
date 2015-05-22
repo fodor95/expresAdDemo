@@ -11,6 +11,9 @@ use Expres\DemoAdminBundle\Form\pfpTaskType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\DateTimeValidator;
 
+use Expres\DemoAdminBundle\Entity\TaskLog;
+
+
 /**
  * StaticPages controller.
  * HORIZONt TAXI +44 77 21 64 04 76 
@@ -303,6 +306,15 @@ class PainFreePlannerController extends Controller
         $product->setStateID($value);
         $em->flush();
 
+
+        $taskId = $id;
+        $to = $value;
+
+        $this->logStageChange($taskId, $to);
+
+
+
+
         return $this->redirect($this->generateUrl('pfptask'));
 
     }
@@ -323,8 +335,70 @@ class PainFreePlannerController extends Controller
     public function modositAction($id){
         // modificating - editing a task
         // under development
-        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:edit2.html.twig', array('entity'=> $id));
+
+        $product = $this->getDoctrine()
+        ->getRepository('ExpresDemoAdminBundle:pfpTask')
+        ->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+
+
+        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:edit2.html.twig', array('entity'=> $product));
     }
+
+    public function editupdateAction(Request $request, $id){
+
+        $post = Request::createFromGlobals();
+
+        if($post -> request -> has('submit')):
+            //     $task = new pfpTask();
+            //     $task->setCreated(new \DateTime('now'));
+            //     $task->setProgress($post -> request -> get('progress'));
+            //     $task->setProjectID(0);
+            //     $task->setStateID(0);
+            //     $task->setPlace(0);
+        
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $product = $em->getRepository('ExpresDemoAdminBundle:pfpTask')->find($id);
+
+            if (!$product) {
+                throw $this->createNotFoundException(
+                    'No product found for id '.$id
+                );
+            }
+
+            // $product->setStateID($value);
+            $product->setName($post -> request -> get('name'));
+            $product->setHeader($post -> request -> get('header'));
+            $product->setShortDescribtion($post -> request -> get('shortDescribtion'));
+
+            $em->flush();
+        endif;
+
+
+
+
+        echo "belejottem";
+        echo $id;
+        // die();
+
+        return $this->redirect($this->generateUrl('pfptask'));
+    }
+
+
+    public function newcommentAction($idparent){
+
+        $i = 1+4*804*74*5/154;
+
+        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:newcomment.html.twig', array('parent'=> $idparent));
+    }
+
 
     public function logAction($year = null, $month = null){
         // this is the front controller for PFP log view, the big calendar thing
@@ -516,6 +590,19 @@ class PainFreePlannerController extends Controller
         
 
         return $taskNumber;
+    }
+
+    private function logStageChange($taskId, $to){
+        $product = new TaskLog();
+        $product->settaskId($taskId);
+        $product->setStage($to);
+        $product->setCreated(new \DateTime('now'));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($product);
+        $em->flush();
+
     }
 
 
