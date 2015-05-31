@@ -1,0 +1,78 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+{% block navbar %}
+<a href="{{ path('pfptask_logfront') }}" class="btn btn-success">
+<i class="fa fa-bar-chart"></i> View working log
+</a>
+<a href="{{ path('pfptask') }}" class="btn btn-success">
+<i class="fa fa-bar-chart"></i> Default task view
+</a>
+{% endblock %}
+
+
+{% block main -%}
+
+
+<h2> New comment for: </h2>
+<h4> Name: {{ task.name }} </h4>
+<h4> Describtion: {{ task.shortDescribtion }} </h4>
+<h4> Progress: {{ task.progress }}% </h4>
+<h4> 
+	State: 
+	{% if task.stateId == 0 %} 
+	Newby
+	{% elseif task.stateId == 1 %}
+	Ice box
+	{% elseif task.stateId == 2 %}
+	Emergency
+ Dashboard Home
+ Newsletters
+ Content
+ Configuration
+ Statistics
+ Apps
+PainFreePlanner
+Other
+
+	{% elseif task.stateId == 3 %}
+	In progress
+	{% elseif task.stateId == 4 %}
+	Testing
+	{% elseif task.stateId == 5 %}
+	Finished
+	{% endif %}
+</h4>
+
+
+<h2>Your comment: </h2>
+<form name="form" method="post" action="{{ path('pfp_task_insert_comment', {'id' : task.id}) }}">
+
+
+
+
+<div class="form-group">
+<label class="control-label required" for="name">Maximum lenght allowed 255 chars.If it`s longer, it should be a separate comment than, feel free to use #</label>
+<input type="text" id="comment" name="comment" required="required" maxlength="255" class="form-control" value="#">
+</div>
+
+<button type="submit"  class="btn btn-primary" name="submit" id="submit">Save comment</button>
+</form>
+
+<!-- {{ dump(task) }} -->
+
+<h2> Older comments </h2>
+
+<!-- {{ dump(comments) }} -->
+
+{% for comment in comments %}
+<div class="alert alert-info" role="alert">	
+	<a href="{{ path('pfptask_delete_comment', {'id' : comment.id, 'taskid' : comment.taskId }) }}" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+	<p class="pull-right"> Written: {{ comment.created|date("d/m/Y") }} </p>
+	<p> {{ comment.comment }} </p>
+</div>
+{% endfor %}
+
+
+
+
+{% endblock %}

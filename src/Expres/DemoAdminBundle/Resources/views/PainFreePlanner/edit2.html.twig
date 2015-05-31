@@ -1,3 +1,52 @@
+{% extends 'ExpresDemoAdminBundle:Page:main.html.twig' %}
+
+
+
+
+{% block main -%}
+
 szolo korte alma
 
-fasz: {{ entity }}
+fasz: {{ dump(entity) }}
+
+<H2> Editing task: #{{ entity.id }} - {{ entity.name }} </H2>
+
+<form name="form" method="post" action="{{ path('pfptask_editupdate', {'id' : entity.id}) }}">
+
+<div class="form-group">
+<label class="control-label required" for="name">Name</label>
+<input type="text" id="name" name="name" required="required" maxlength="255" class="form-control" value="{{ entity.name }}">
+</div>
+
+
+<div class="form-group">
+<label class="control-label required" for="shortDescribtion">Short describtion</label>
+<input type="text" id="shortDescribtion" name="shortDescribtion" required="required" minlength="10" maxlength="255" class="form-control" value="{{ entity.shortDescribtion }}">
+</div>
+
+<div class="form-group">
+<label class="control-label" for="header">Header</label>
+<input type="text" id="header" name="header" maxlength="45" class="form-control" value="{{ entity.header }}">
+</div>
+
+
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="{{ entity.progress }}"
+  aria-valuemin="0" aria-valuemax="100" style="width:{{ entity.progress }}%">
+    {{ entity.progress }}%
+  </div>
+</div>
+
+
+
+
+
+   
+ 
+        <a href="{{ path('pfptask') }}"  class="btn btn-default">Go back</a>
+        <button type="submit"  class="btn btn-primary" name="submit" id="submit">Update</button>
+		</form>
+
+
+
+{% endblock %}
