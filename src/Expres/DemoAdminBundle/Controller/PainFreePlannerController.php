@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Constraints\DateTimeValidator;
 
 use Expres\DemoAdminBundle\Entity\TaskLog;
+use Expres\DemoAdminBundle\Entity\TaskComments;
 
 
 /**
@@ -328,8 +329,20 @@ class PainFreePlannerController extends Controller
     public function deleteTaskModalAction($id){
         // deleting a task
         // under dev.
-        echo 'delete : ' . $id;
-        die();
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('ExpresDemoAdminBundle:pfpTask')->find($id);
+
+        if (!$product) {
+        throw $this->createNotFoundException(
+        'No product found for id '.$id
+        );
+        }
+
+        $em->remove($product);
+        $em->flush();
+
+        // die();
+        return $this->redirect($this->generateUrl('pfptask'));
     }
 
     public function modositAction($id){
@@ -396,8 +409,121 @@ class PainFreePlannerController extends Controller
 
         $i = 1+4*804*74*5/154;
 
-        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:newcomment.html.twig', array('parent'=> $idparent));
+        $task = $this->getOneTaskById($idparent);
+
+        // for($i = 1214; $i < 1227; $i++){
+        // $comment = new TaskComments();
+        // $comment->setTaskId($idparent);
+        // $comment->setCreated(new \DateTime('now'));
+        // $comment->setComment(md5('Lorem ipsum dolor' . $i) . $i . '+-4 Lorem ' . $i );
+
+        // $em = $this->getDoctrine()->getManager();
+
+        // $em->persist($comment);
+        // $em->flush();
+        // }
+        
+        $comments = $this->getCommentsForOneTask($idparent);
+
+
+
+        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:newcomment.html.twig', array('task'=> $task, 'comments' => $comments));
     }
+
+    private function getOneTaskById($id){
+        $task = $this->getDoctrine()
+        ->getRepository('ExpresDemoAdminBundle:pfpTask')
+        ->find($id);
+
+        if (!$task) {
+            throw $this->createNotFoundException(
+            'No product found for id '.$id
+        );
+        }
+
+        return $task;
+
+    }
+
+    private function getCommentsForOneTask($taskId){
+        // $product = $this->getDoctrine()
+        // ->getRepository('ExpresDemoAdminBundle:TaskComments')
+        // ->find($taskId);
+
+        $repository = $this->getDoctrine()
+        ->getRepository('ExpresDemoAdminBundle:TaskComments');
+
+
+
+        // if (!$product) {
+        //     throw $this->createNotFoundException(
+        //         'No product found for id '.$id
+        //     );
+
+        // }
+
+        $products = $repository->findByTaskId($taskId);
+
+
+    return $products;
+
+    }   
+
+
+    public function newcommentinsertAction(Request $request, $id){
+        // insertng a new comment
+        echo 'szent mihajon teszko lesz';
+
+
+       $post = Request::createFromGlobals();
+        if($post -> request -> has('submit')):
+            
+            $task = new TaskComments();
+            $task->setCreated(new \DateTime('now'));
+            $task->setComment($post -> request -> get('comment'));
+            $task->setTaskId($id);
+    
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($task);
+            $em->flush();
+
+            
+
+            
+
+        endif;
+
+
+        
+
+        return $this->redirect($this->generateUrl('pfptask_new_comment',array('idparent'=>$id)));
+    }
+
+    public function deletetaskcommentAction($id,$taskid){
+        echo 'hello';
+
+        // die();
+        // pfptask_new_comment', {'idparent' : entity.id
+
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('ExpresDemoAdminBundle:TaskComments')->find($id);
+
+        if (!$product) {
+        throw $this->createNotFoundException(
+        'No product found for id '.$id
+        );
+        }
+
+        $em->remove($product);
+        $em->flush();
+
+
+        return $this->redirect($this->generateUrl('pfptask_new_comment',array('idparent'=>$taskid)));
+    }
+
 
 
     public function logAction($year = null, $month = null){
@@ -604,6 +730,50 @@ class PainFreePlannerController extends Controller
         $em->flush();
 
     }
+
+    public function getRecordsForGivenDateAction($date){
+        // return : created - finished - comments - changes
+
+        $records['created']     = $this -> getCreatedTasks($date);
+        $records['finished']    = $this -> getFinishedTasks($date);
+        $records['comments']    = $this -> getCommentsAdded($date);
+        $records['changes']     = $this -> getChangesMade($date);
+
+        
+        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:logdaystats.html.twig', array('records' => $records));
+
+    }
+
+    private function getCreatedTasks($date){
+        $datetime = $date;
+
+        $repository = $this->getDoctrine()
+                    ->getRepository('ExpresDemoAdminBundle:TaskLog');
+        $query = $repository->createQueryBuilder('p')
+            ->where('p.stage = ' . 0 . ' and p.created >= \' '  . $datetime . ' 00:00:00 \' and p.created <= \' ' . $datetime . ' 22:59:59 \' ')
+            ->getQuery();
+
+        $products = $query->getResult();
+        $number = 0;
+        foreach ($products as $product )
+            $number ++;
+
+        return $number;
+
+    }
+
+    private function getFinishedTasks($date){
+        return 56;
+    }
+
+    private function getCommentsAdded($date){
+        return 12;
+    }
+
+    private function getChangesMade($date){
+        return 31;
+    }
+
 
 
 }

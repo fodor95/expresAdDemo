@@ -215,17 +215,18 @@
 {% if day != 0 %}
 	<div class="dateBg"> {{day}} </div> 
 	<div class="dateFront">
-
-		<span class="label label-success">2</span>created <br>
-		<span class="label label-success">2</span>finished <br>
-		<span class="label label-success">5</span>comments <br>
-		<span class="label label-success">9</span>changes
+		{{ render(controller('ExpresDemoAdminBundle:PainFreePlanner:getRecordsForGivenDate', {'date': '2015-05-18'})) }}
 	</div> 
 	</div>
 {% else %}
 <div class="dateBg">   </div> 
 	<div class="dateFront">
 
+<!-- 
+pfptask_log_get_records_for_given_date
+
+
+ -->
 		
 		<span class="label label-success"></span>
 	</div> 

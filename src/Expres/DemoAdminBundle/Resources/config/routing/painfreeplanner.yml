@@ -58,6 +58,15 @@ pfptask_new_comment:
     path: /newcomment/{idparent}
     defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:newcomment"}
 
+pfptask_delete_comment:
+    path: /deletecomment/{id}/{taskid}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:deletetaskcomment"}
+
+pfp_task_insert_comment:
+    path: /newcommentinsert/{id}
+    defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:newcommentinsert"}
+    methods:  [POST, PUT]
+
 pfptask_logfront:
     path: /log
     defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:log"}
@@ -65,3 +74,4 @@ pfptask_logfront:
 pfptask_log_by_date:
     path: /log/date/{year}/{month}
     defaults: { _controller: "ExpresDemoAdminBundle:PainFreePlanner:log"}
+
