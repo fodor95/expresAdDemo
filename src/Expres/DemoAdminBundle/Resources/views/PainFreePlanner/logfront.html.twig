@@ -9,18 +9,13 @@
 
 
 {% block navbar %}
-
-<a href="{{ path('pfptask_logfront') }}" class="btn btn-success">
-<i class="fa fa-bar-chart"></i> Go to current date
-</a>
-
 <a href="{{ path('pfptask') }}" class="btn btn-success">
 <i class="fa fa-bar-chart"></i> Default task view
 </a>
 
-<!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newTask">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#newTask">
 <i class="fa fa-file-o"></i> Create new task
-</button> -->
+</button>
 
 {% endblock %}
 
@@ -35,26 +30,17 @@
 		<div class="col-md-2">
 			<h4> YEAR </h4>
 		</div>
-		<div class="col-md-7 yearRowButtons">
+		<div class="col-md-10 yearRowButtons">
 			
-				
-				<!-- <a href="" class="btn btn-default yearButton">2012</a>
+				<a href="" class="btn btn-default yearButton">2011</a>
+				<a href="" class="btn btn-default yearButton">2012</a>
 				<a href="" class="btn btn-default yearButton">2013</a>
 				<a href="" class="btn btn-default yearButton">2014</a>
 				<a href="" class="btn btn-default yearButton">2015</a>
-				<a href="" class="btn btn-default yearButton">2016</a> -->
-			{% for i in 2014..2020 %}
-				<!-- alma -->
-				<a href="{{ path('pfptask_log_by_date', {'year': i, 'month': thisMonth }) }}" class="btn btn-default yearButton">{{ i }}</a>
-			{% endfor %}
-
+				<a href="" class="btn btn-default yearButton">2016</a>
 			
-
 		</div>
-		<div class="col-md-3 yearRowButtons">
-			<p class="pull right">Location: {{ thisMonth }} {{ thisYear }} | Today: {{ "now"|date("m/d/Y") }}</p>
-			
-	 	</div>
+	 
 	</div>
 
 	<div class="row monthRow"> 
@@ -62,7 +48,7 @@
 			<h4> MONTH </h4>
 		</div>
 		<div class="col-md-10 monthRowButtons">
-		<!-- 		<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'January' }) }}" class="btn btn-default yearButton">Jan</a>
+				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'January' }) }}" class="btn btn-default yearButton">Jan</a>
 				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'February' }) }}" class="btn btn-default yearButton">Feb</a>
 				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'March' }) }}" class="btn btn-default yearButton">Mar</a>
 				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'April' }) }}" class="btn btn-default yearButton">Apr</a>
@@ -74,11 +60,6 @@
 				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'October' }) }}" class="btn btn-default yearButton">Oct</a>
 				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'November' }) }}" class="btn btn-default yearButton">Nov</a>
 				<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': 'December' }) }}" class="btn btn-default yearButton">Dec</a>
-		 -->
-		{% for month in months %}
-			<a href="{{ path('pfptask_log_by_date', {'year': thisYear, 'month': month  }) }}" class="btn btn-default yearButton">{{ month }}</a>
-		{% endfor %}
-
 		</div>
 	 
 	</div>
@@ -207,33 +188,19 @@
 	<div class="row">
 
 {% for day in daysOfMonth %}
-
 <!-- -> {{ day }} : - -->
 <div class="col-md-2 calendarBox"> 
 <div class="calendarBoxInner"> 
 
-{% if day != 0 %}
 	<div class="dateBg"> {{day}} </div> 
 	<div class="dateFront">
-		{{ render(controller('ExpresDemoAdminBundle:PainFreePlanner:getRecordsForGivenDate', {'date': '2015-05-18'})) }}
+		<span class="label label-success">2</span>created <br>
+		<span class="label label-success">2</span>finished <br>
+		<span class="label label-success">5</span>comments <br>
+		<span class="label label-success">9</span>changes
+
 	</div> 
-	</div>
-{% else %}
-<div class="dateBg">   </div> 
-	<div class="dateFront">
-
-<!-- 
-pfptask_log_get_records_for_given_date
-
-
- -->
-		
-		<span class="label label-success"></span>
-	</div> 
-	</div>
-
-{% endif %}
-
+</div>
 </div>
 
 
@@ -258,7 +225,7 @@ pfptask_log_get_records_for_given_date
 
 				<div class="col-md-2">
 				<div class="infoBoxInner">
-					<h4> {{ taskCounter.0 }} </h4> 
+					<h4> 4 </h4> 
 					NEW 
 				</div>
 				</div>
@@ -266,21 +233,21 @@ pfptask_log_get_records_for_given_date
 
 				<div class="col-md-2">
 				<div class="infoBoxInner">
-					<h4> {{ taskCounter.1 }} </h4> 
+					<h4> 4 </h4> 
 					ICED
 				</div>
 				</div>
 
 				<div class="col-md-2">
 				<div class="infoBoxInner">
-					<h4> {{ taskCounter.2 }} </h4> 
+					<h4> 4 </h4> 
 					PANIC
 				</div>
 				</div>
 
 				<div class="col-md-2">
 				<div class="infoBoxInner">
-					<h4> {{ taskCounter.3 }} </h4> 
+					<h4> 4 </h4> 
 					WORKING 
 				</div>
 				</div>
@@ -288,14 +255,14 @@ pfptask_log_get_records_for_given_date
 
 				<div class="col-md-2">
 				<div class="infoBoxInner">
-					<h4> {{ taskCounter.4 }} </h4> 
+					<h4> 4 </h4> 
 					TESTING
 				</div>
 				</div>
 
 				<div class="col-md-2">
 				<div class="infoBoxInner">
-					<h4> {{ taskCounter.5 }} </h4> 
+					<h4> 4 </h4> 
 					FINISHED 
 				</div>
 				</div>

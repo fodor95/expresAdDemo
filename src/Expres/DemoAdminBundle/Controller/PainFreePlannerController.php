@@ -8,12 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Expres\DemoAdminBundle\Entity\pfpTask;
 use Expres\DemoAdminBundle\Form\pfpTaskType;
 
-use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Validator\Constraints\DateTimeValidator;
-
-use Expres\DemoAdminBundle\Entity\TaskLog;
-use Expres\DemoAdminBundle\Entity\TaskComments;
-
 
 /**
  * StaticPages controller.
@@ -307,15 +301,6 @@ class PainFreePlannerController extends Controller
         $product->setStateID($value);
         $em->flush();
 
-
-        $taskId = $id;
-        $to = $value;
-
-        $this->logStageChange($taskId, $to);
-
-
-
-
         return $this->redirect($this->generateUrl('pfptask'));
 
     }
@@ -329,202 +314,15 @@ class PainFreePlannerController extends Controller
     public function deleteTaskModalAction($id){
         // deleting a task
         // under dev.
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('ExpresDemoAdminBundle:pfpTask')->find($id);
-
-        if (!$product) {
-        throw $this->createNotFoundException(
-        'No product found for id '.$id
-        );
-        }
-
-        $em->remove($product);
-        $em->flush();
-
-        // die();
-        return $this->redirect($this->generateUrl('pfptask'));
+        echo 'delete : ' . $id;
+        die();
     }
 
     public function modositAction($id){
         // modificating - editing a task
         // under development
-
-        $product = $this->getDoctrine()
-        ->getRepository('ExpresDemoAdminBundle:pfpTask')
-        ->find($id);
-
-        if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
-
-
-
-        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:edit2.html.twig', array('entity'=> $product));
+        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:edit2.html.twig', array('entity'=> $id));
     }
-
-    public function editupdateAction(Request $request, $id){
-
-        $post = Request::createFromGlobals();
-
-        if($post -> request -> has('submit')):
-            //     $task = new pfpTask();
-            //     $task->setCreated(new \DateTime('now'));
-            //     $task->setProgress($post -> request -> get('progress'));
-            //     $task->setProjectID(0);
-            //     $task->setStateID(0);
-            //     $task->setPlace(0);
-        
-
-            $em = $this->getDoctrine()->getEntityManager();
-            $product = $em->getRepository('ExpresDemoAdminBundle:pfpTask')->find($id);
-
-            if (!$product) {
-                throw $this->createNotFoundException(
-                    'No product found for id '.$id
-                );
-            }
-
-            // $product->setStateID($value);
-            $product->setName($post -> request -> get('name'));
-            $product->setHeader($post -> request -> get('header'));
-            $product->setShortDescribtion($post -> request -> get('shortDescribtion'));
-
-            $em->flush();
-        endif;
-
-
-
-
-        echo "belejottem";
-        echo $id;
-        // die();
-
-        return $this->redirect($this->generateUrl('pfptask'));
-    }
-
-
-    public function newcommentAction($idparent){
-
-        $i = 1+4*804*74*5/154;
-
-        $task = $this->getOneTaskById($idparent);
-
-        // for($i = 1214; $i < 1227; $i++){
-        // $comment = new TaskComments();
-        // $comment->setTaskId($idparent);
-        // $comment->setCreated(new \DateTime('now'));
-        // $comment->setComment(md5('Lorem ipsum dolor' . $i) . $i . '+-4 Lorem ' . $i );
-
-        // $em = $this->getDoctrine()->getManager();
-
-        // $em->persist($comment);
-        // $em->flush();
-        // }
-        
-        $comments = $this->getCommentsForOneTask($idparent);
-
-
-
-        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:newcomment.html.twig', array('task'=> $task, 'comments' => $comments));
-    }
-
-    private function getOneTaskById($id){
-        $task = $this->getDoctrine()
-        ->getRepository('ExpresDemoAdminBundle:pfpTask')
-        ->find($id);
-
-        if (!$task) {
-            throw $this->createNotFoundException(
-            'No product found for id '.$id
-        );
-        }
-
-        return $task;
-
-    }
-
-    private function getCommentsForOneTask($taskId){
-        // $product = $this->getDoctrine()
-        // ->getRepository('ExpresDemoAdminBundle:TaskComments')
-        // ->find($taskId);
-
-        $repository = $this->getDoctrine()
-        ->getRepository('ExpresDemoAdminBundle:TaskComments');
-
-
-
-        // if (!$product) {
-        //     throw $this->createNotFoundException(
-        //         'No product found for id '.$id
-        //     );
-
-        // }
-
-        $products = $repository->findByTaskId($taskId);
-
-
-    return $products;
-
-    }   
-
-
-    public function newcommentinsertAction(Request $request, $id){
-        // insertng a new comment
-        echo 'szent mihajon teszko lesz';
-
-
-       $post = Request::createFromGlobals();
-        if($post -> request -> has('submit')):
-            
-            $task = new TaskComments();
-            $task->setCreated(new \DateTime('now'));
-            $task->setComment($post -> request -> get('comment'));
-            $task->setTaskId($id);
-    
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($task);
-            $em->flush();
-
-            
-
-            
-
-        endif;
-
-
-        
-
-        return $this->redirect($this->generateUrl('pfptask_new_comment',array('idparent'=>$id)));
-    }
-
-    public function deletetaskcommentAction($id,$taskid){
-        echo 'hello';
-
-        // die();
-        // pfptask_new_comment', {'idparent' : entity.id
-
-
-        $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('ExpresDemoAdminBundle:TaskComments')->find($id);
-
-        if (!$product) {
-        throw $this->createNotFoundException(
-        'No product found for id '.$id
-        );
-        }
-
-        $em->remove($product);
-        $em->flush();
-
-
-        return $this->redirect($this->generateUrl('pfptask_new_comment',array('idparent'=>$taskid)));
-    }
-
-
 
     public function logAction($year = null, $month = null){
         // this is the front controller for PFP log view, the big calendar thing
@@ -537,36 +335,35 @@ class PainFreePlannerController extends Controller
             return $this->redirectToRoute('pfptask_log_by_date', array('year'=>$year,'month'=>$month), 301);
         }
 
+        // echo $year;
+        // echo $month . '<br>';
 
 
-        //puts a 0 to every place of the array
+
         for($i = 0; $i < 42; $i ++)
             $monthDays[$i] = 0;
 
         $d = 1;
         // there must be an array, which holds when does the month start
-        for($i = $this->countWhenToStartMonth($year,$month); $i < $this->countWhenToStartMonth($year,$month)+$this->getCurrentMonthLength($year, $month); $i++){
+        for($i = $this->countWhenToStartMonth($year,$month); $i < $this->countWhenToStartMonth($year,$month)+31; $i++){
             $monthDays[$i] = $d++;
             
         }
 
-        // echo $this->getCurrentMonthLength($year,$month);
+
+        // echo 'current month length: '.$this->getCurrentMonthLength($year,$month) . '|';
+
+        // echo '<->';
 
 
-        // echo 'month before ' . $this->getPreviousMonthWithYear($year, $month) . '</br>';
-        // echo 'month after ' . $this->getNextMonthWithYear($year,$month) . '</br>';
-        // echo 'month number' . $this->getMonthNumber($month) . '<br>';
-
-        // var_dump($this->taskCounter(1));
-
-
+        // echo 'day name of first day of month ('.$month.')' .$this->getDayNameOfFirstDayOfMonth($year,$month). '|';
+        // echo '<->';
+        // echo $this->countWhenToStartMonth($year,$month). '|';
 
         return $this->render('ExpresDemoAdminBundle:PainFreePlanner:logfront.html.twig', array(
                                                                                         'daysOfMonth'   => $monthDays,
-                                                                                        'thisYear'      => $year,
-                                                                                        'thisMonth'     => $month,
-                                                                                        'months'        => $this->getMonthsInOrder(),
-                                                                                        'taskCounter'   => $this->countAllTasksbyState($year, $month)
+                                                                                        'thisYear'      =>$year,
+                                                                                        'thisMonth'     =>$month
                                                                                         ));
     }
 
@@ -577,11 +374,7 @@ class PainFreePlannerController extends Controller
         // debugging
         // echo 'getCurrentMonthLength: ' . date('d', strtotime('last day of this month'));
 
-        // return date('d', strtotime($year . ' ' . $month .' last day of month'));
-
-        // return cal_days_in_month(CAL_GREGORIAN, $month, $year);
-
-        return $this->daysInMonth($month, $year);
+        return date('d', strtotime('last day of this month'));
     }
 
     private function getDayNameOfFirstDayOfMonth($year,$month){
@@ -626,154 +419,6 @@ class PainFreePlannerController extends Controller
         // returns the current month 
         return date('F', strtotime('today'));
     }
-
-    private function getPreviousMonthWithYear($year,$month){
-        // returns the previous month with year, this format [0000]-[Month]
-        // return date('Y-F',strtotime($year . '-' . $month . '-30 first day of last month'));
-
-        return date('F',strtotime($year . '-' . $month . '-30 first day of last month'));
-    }
-
-    private function getPreviousMonthLength($year,$month){
-        
-    }
-
-    private function getNextMonthWithYear($year,$month){
-        // returns the next month with year, this format [0000]-[Month]
-        // return date('Y-F',strtotime($year . '-' . $month . '-30 first day of next month'));
-
-        return date('F',strtotime($year . '-' . $month . '-30 first day of next month'));
-    }
-
-    private function getMonthNumber($month){
-        $date = $month . ' 25 2010';
-
-        return date('m', strtotime($date));
-    }
-
-
-    private function daysInMonth($monthLetters, $year){ 
-    // calculate number of days in a month 
-        $month = $this -> getMonthNumber($monthLetters);
-    return $month == 2 ? ($year % 4 ? 28 : ($year % 100 ? 29 : ($year % 400 ? 28 : 29))) : (($month - 1) % 7 % 2 ? 30 : 31); 
-    } 
-
-    private function getMonthsInOrder(){
-        $months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-        return $months;
-    }
-
-    private function taskCounter($state,$year,$month){
-        // $em = $this->getDoctrine()->getManager();
-
-        
-        // $repository = $this->getDoctrine()->getRepository('ExpresDemoAdminBundle:pfpTask');
-        // $products = $repository->findByStateID($state);
-
-
-        // $from = DateTime::createFromFormat('2015-04-27 22:44:39', 'Y-m-d H:i:s');
-        // $from = DateTime::createFromFormat(, 'Y-m-d H:i:s');
-        // $from = new \DateTime('2015-04-27 22:44:39');
-
-
-
-
-        $datetime = new \DateTime("now");
-
-        $repository = $this->getDoctrine()
-                    ->getRepository('ExpresDemoAdminBundle:pfpTask');
-
-        //gets the number of month, from where to start with
-        $monthNumberToStartCounting = $this -> getMonthNumber($month);
-
-        //simply increments the month with one, to get the month till ends the first
-        $monthNumberToEndCounting = $monthNumberToStartCounting+1;
-
-        $query = $repository->createQueryBuilder('p')
-        // an interval from 1st of the month till the 1st day of the next month - so we do not have to know the length of the month
-            ->where('p.stateID = ' . $state . ' and p.created >= \' '. $year .'-'. $monthNumberToStartCounting .'-01 \''  . ' and p.created < \' '.$year.'-'.$monthNumberToEndCounting.'-01 \'' )
-            // ->setParameter('header', '19.99')
-            ->getQuery();
-
-        $products = $query->getResult();
-
-
-        // THE variable to store the tasks 
-        $number = 0;
-
-        foreach ($products as $product )
-            $number ++;
-
-        return $number;
-    }
-
-    private function countAllTasksbyState($year,$month){
-
-        $taskNumber = [];
-
-        for($i = 0; $i < 6; $i++)
-            $taskNumber[$i] = $this->taskCounter($i,$year,$month);
-        
-
-        return $taskNumber;
-    }
-
-    private function logStageChange($taskId, $to){
-        $product = new TaskLog();
-        $product->settaskId($taskId);
-        $product->setStage($to);
-        $product->setCreated(new \DateTime('now'));
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($product);
-        $em->flush();
-
-    }
-
-    public function getRecordsForGivenDateAction($date){
-        // return : created - finished - comments - changes
-
-        $records['created']     = $this -> getCreatedTasks($date);
-        $records['finished']    = $this -> getFinishedTasks($date);
-        $records['comments']    = $this -> getCommentsAdded($date);
-        $records['changes']     = $this -> getChangesMade($date);
-
-        
-        return $this->render('ExpresDemoAdminBundle:PainFreePlanner:logdaystats.html.twig', array('records' => $records));
-
-    }
-
-    private function getCreatedTasks($date){
-        $datetime = $date;
-
-        $repository = $this->getDoctrine()
-                    ->getRepository('ExpresDemoAdminBundle:TaskLog');
-        $query = $repository->createQueryBuilder('p')
-            ->where('p.stage = ' . 0 . ' and p.created >= \' '  . $datetime . ' 00:00:00 \' and p.created <= \' ' . $datetime . ' 22:59:59 \' ')
-            ->getQuery();
-
-        $products = $query->getResult();
-        $number = 0;
-        foreach ($products as $product )
-            $number ++;
-
-        return $number;
-
-    }
-
-    private function getFinishedTasks($date){
-        return 56;
-    }
-
-    private function getCommentsAdded($date){
-        return 12;
-    }
-
-    private function getChangesMade($date){
-        return 31;
-    }
-
 
 
 }
